@@ -1,0 +1,370 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <title>너-라면? 나-라면!</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+
+    <!-- Font awesome -->
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">   
+    <!-- Slick slider -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}">    
+    <!-- Date Picker -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-datepicker.css' %}">    
+    <!-- Fancybox slider -->
+    <link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}" type="text/css" media="screen" /> 
+    <!-- Theme color -->
+    <link id="switcher" href="{% static 'css/theme-color/default-theme.css' %}"  rel="stylesheet">     
+
+    <!-- Main style sheet -->
+    <link href="{%static 'css/style.css'%}" rel="stylesheet">    
+
+   
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>        
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+  <body>  
+  <!-- Pre Loader -->
+  <div id="aa-preloader-area">
+    <div class="mu-preloader">
+      <img src="{% static 'ramen.gif' %}" alt=" loader img">
+    </div>
+  </div>
+  <!--START SCROLL TOP BUTTON -->
+    <a class="scrollToTop" href="#">
+      <i class="fa fa-angle-up"></i>
+      <span>Top</span>
+    </a>
+  <!-- END SCROLL TOP BUTTON -->
+
+  <!-- Start header section -->
+  <header id="mu-header">  
+    <nav class="navbar navbar-default mu-main-navbar" role="navigation">  
+      <div class="container">
+        <div class="navbar-header">
+          <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- LOGO -->                                                        
+          <a class="navbar-brand" href="#index.html"><img src="{% static 'nona.png' %}" width="50px" height="50px" alt="Logo img"></a> 
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
+            <li><a href="#mu-slider">메인화면</a></li>
+            <li><a href="#mu-about-us">레시피</a></li>                                            
+            <li><a href="{% url 'home2'%}">게시판</a></li>                       
+               {% if user.is_authenticated %}
+              <li><a href="{% url 'logout' %}">로그아웃</a></li>
+              {% else %} 
+              <li><a href="{% url 'login' %}">로그인</a></li>
+              {% endif %}
+            <li><a href="{% url 'signupgo' %}">회원가입</a></li> 
+            </li>
+          </ul>                            
+        </div><!--/.nav-collapse -->       
+      </div>          
+    </nav> 
+  </header>
+  <!-- End header section -->
+ 
+
+  <!-- Start slider  -->
+  <section id="mu-slider">
+    <div class="mu-slider-area"> 
+      <!-- Top slider -->
+      <div class="mu-top-slider">
+        <!-- Top slider single slide -->
+        <div class="mu-top-slider-single">
+          <img src="https://scontent-sjc3-1.cdninstagram.com/vp/54b0a4c3d285649c327cbd00b0d9c3b2/5D3744AF/t51.2885-15/sh0.08/e35/c1.0.1078.1078/s640x640/54447072_423259528245566_1994598426306443497_n.jpg?_nc_ht=scontent-sjc3-1.cdninstagram.com" wdith = "1000px" height = "750px" alt="img">
+          <!-- Top slider content -->
+          <div class="mu-top-slider-content">
+            <span class="mu-slider-small-title">first</span>
+            <h2 class="mu-slider-title">똠양꿍 라면's</h2>
+            <p>레몬과 라임을 넣어 상큼한 맛을 내는 재밌는 라면</p>           
+            <a href=#mu-about-us class="mu-readmore-btn">레시피 보기</a>
+          </div>
+          <!-- / Top slider content -->
+        </div>
+        <!-- / Top slider single slide -->    
+         <!-- Top slider single slide -->
+        <div class="mu-top-slider-single">
+          <img src="https://www.menupan.com/common/service/img_proxy.asp?src=http%3A%2F%2Fpostfiles8.naver.net%2F20131003_263%2Fsusisis_1380732999289Ya26O_JPEG%2F%25BD%25C5%25C3%25CC%25B8%25C0%25C1%25FD.JPG%3Ftype%3Dw1" wdith = "1000px" height = "750px"  alt="img">
+          <!-- Top slider content -->
+          <div class="mu-top-slider-content">
+            <span class="mu-slider-small-title">second</span>
+            <h2 class="mu-slider-title">마라 볶음면</h2>
+            <p>마라소스를 넣어 중국에 온듯한 느낌을 받는 이국적인 라면</p>           
+            <a href="#mu-about-us1" class="mu-readmore-btn">레시피 보기</a>
+          </div>
+          <!-- / Top slider content -->
+        </div>
+        <!-- / Top slider single slide --> 
+        <div class="mu-top-slider-single">
+          <img src="https://scontent.cdninstagram.com/vp/dea51357f9e0305c6ee88f4af4c89f7f/5D572F97/t51.2885-15/e35/c135.0.810.810a/s480x480/54511244_1043388402528476_8744421825387690744_n.jpg?_nc_ht=scontent-sea1-1.cdninstagram.com" wdith = "1000px" height = "750px" alt="img" >
+          
+          <div class="mu-top-slider-content">
+            <span class="mu-slider-small-title">third</span>
+            <h2 class="mu-slider-title">트러플 오일을 뿌린 짜파게티's</h2>
+            <p>국민 짜장 라면인 짜파게티에 고급진 트러플 오일을 뿌려 극과 극의 맛을 내는 라면</p>           
+            <a href="#mu-about-us2" class="mu-readmore-btn">레시피 보기</a>
+          </div>
+          <!-- / Top slider content -->
+        </div>
+        <!-- / Top slider single slide -->    
+      </div>
+    </div>
+  </section>
+  <!-- End slider  -->
+
+  <!-- Start About us -->
+  <section id="mu-about-us">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="mu-about-us-area">
+            <div class="mu-title">
+              <span class="mu-subtitle">WOW</span>
+              <h2>똠양꿍 라면 레시피</h2>
+              <i class="fa fa-spoon"></i>              
+              <span class="mu-title-bar"></span>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mu-about-us-left">
+                 <p><h3>재료</h3>:
+                  타이거새우 2마리(5-10미), 물 1L, 청주 적당량 1/2C, 라임 잎 2장, 갈랑갈 1개, 레몬그라스 2뿌리, 
+                  베트남고추 3개, 고수 2개, 방울토마토 3개, 적양파 1/2개, 볶은 쌀가루 1/3T, 멸치액젓 2T, 
+                  설탕 2t, 라임즙 3T, 총알새송이버섯 1줌, 느타리버섯 1줌, 홍고추 1개, 고춧가루 1/2T, 쪽파 약간,
+                  남프릭파오 1/2T</p>
+                  <h3>만드는 법</h3>
+                  <ol>
+                    <li>새우를 청주에 5분간 재운 후 대가리와 껍질을 떼고, 등 가운데 부분을 칼로 갈라 모양을 낸다..</li>
+                    <li>마른 냄비에 레몬그라스, 갈랑갈, 라임 잎, 베트남고추, 고수뿌리를 넣어 볶는다.</li>
+                    <li>물을 붓고 길게 썬 적양파와 반으로 자른 방울토마토를 넣어 뭉근하게 끓인다. </li>                    
+                    <li>육수가 끓으면 새우 대가리와 몸통, 볶은 쌀가루를 넣는다.</li>
+                    <li>남프릭파오(칠리페이스트)와 고춧가루를 넣고 끓이다 새우 몸통을 건져낸다. </li>
+                    <li> 물에 희석한 멸치액젓과 설탕, 라임즙을 넣어 간을 맞춘다.</li>
+                  </0l>
+        
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mu-about-us-right">                
+                 <!-- <ul class="mu-abtus-slider">                  -->
+                  <iframe width="500px" height="300px" src="https://www.youtube.com/embed/J_S0I_n6X2I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                 <!-- </ul> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End About us -->
+  <section id="mu-about-us1">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="mu-about-us-area">
+            <div class="mu-title">
+              <span class="mu-subtitle">SPICY</span>
+              <h2>마라 볶음면 레시피</h2>
+              <i class="fa fa-spoon"></i>              
+              <span class="mu-title-bar"></span>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mu-about-us-left">
+                 <p><h3>재료</h3>:
+                  태국고추, 청양고춧가루, 중국고춧가루, 쯔유, 멸치, 삼겹살, 토마토, 쌍화탕, 월계수잎, 굴소스, 알배추, 양송이버섯, 쌀국수면, 청경채, 고수, 버터, 마늘, 청양고추, 대파, 다진생강, 된장, 통후추, 식초 </p>
+                  <ol>
+                    <li>기름을 넉넉하게 두른 팬에 버터를 녹이고 으깬 마늘과 청양고추를 넣고 볶는다.</li>
+                    <li>대파 흰 부분을 칼등으로 으깬 뒤 적당한 크기로 썬다.
+                      볶던 채소에 대파, 태국고추, 청양고춧가루, 다진 생강, 중국고춧가루를 넣어 식초,쯔유,간장,된장으로 간 한다.</li>
+                    <li>볶던 재료에 멸치와 뜨거운 물을 넣고 끓여 마라탕을 만든다.</li>                    
+                    <li>마라탕에 태국고추를 더해 끓인다.</li>
+                    <li>적당한 크기로 썬 삼겹살을 체에 밭친 뒤, 마라탕에 넣어 데친다.</li>
+                    <li>마라탕에 적당한 크기로 썬 토마토와 쌍화탕,월계수잎,굴소스, 알배추,양송이버섯,통후추를 넣는다.</li>
+                    <li>기름을 두른 팬에 잘게 썬 태국고추와 으깬 마늘, 굴소스, 중국고춧가루를 넣고 볶아 고추기름을 낸다.</li>
+                    <li>마라탕에 불린 쌀국수면, 청경채, 고수를 넣고 끓인다.
+                       마라탕을 그릇에 담는다.</li>
+                  </ol>
+                
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mu-about-us-right">                
+                  <iframe width="500" height="300" src="https://www.youtube.com/embed/nUOJrkfz7JE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mu-about-us2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="mu-about-us-area">
+            <div class="mu-title">
+              <span class="mu-subtitle">RICH</span>
+              <h2>트러플 오일 짜파게티</h2>
+              <i class="fa fa-spoon"></i>              
+              <span class="mu-title-bar"></span>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mu-about-us-left">
+                 <p><h3>재료</h3>: 짜장라면  1개, 트러플오일 2T, 계란노른자  
+                 </p>
+                  <ol>
+                    <li> 물 400ml 넣고 끓여주세요.</li>
+                    <li>물이 끓기 시작하면 면과 분말스프, 야채스프 모두모두 넣고 끓여주세요.</li>
+                    <li>면이 다 익어가면 이때 트러플 오일 2숟가락 넣고 다시한번 더 섞어주세요.
+                    </li>                    
+                    <li>마지막 그릇에 담아 주시고,계란 노른자만 올려서 같이 올려주세요.</li>
+                    
+                  </ol>
+                   
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mu-about-us-right">                
+                  <iframe width="500" height="300" src="https://www.youtube.com/embed/Rmxqxlduq4Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  
+  <!-- Start Client Testimonial section -->
+  <section id="mu-client-testimonial">
+    <div class="mu-overlay">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="mu-client-testimonial-area">
+              <div class="mu-title">
+                <span class="mu-subtitle">comment</span>
+                <h2>레시피를 따라해본 추종자들이 남긴말.</h2>
+                <i class="fa fa-spoon"></i>              
+                <span class="mu-title-bar"></span>
+              </div>
+              <!-- testimonial content -->
+              <div class="mu-testimonial-content">
+                <!-- testimonial slider -->
+                <ul class="mu-testimonial-slider">
+                  <li>
+                    <div class="mu-testimonial-single">                   
+                      <div class="mu-testimonial-info">
+                        <p><strong>현기증 난단 말이에요<br>빨리 라면 끓여 주세요..</strong></p>
+                      </div>
+                      <div class="mu-testimonial-bio">
+                        <p>- 갓형욱</p>                      
+                      </div>
+                    </div>
+                  </li>
+                   <li>
+                    <div class="mu-testimonial-single">                   
+                      <div class="mu-testimonial-info">
+                        <p>지아코: 라면5개 들어있는 한 봉지를 다 뜯으시는 거예요?<br>밴쯔:그게 한 봉지니까요.</p>
+                      </div>
+                      <div class="mu-testimonial-bio">
+                        <p>- 밴쯔</p>                      
+                      </div>
+                    </div>
+                  </li>
+                   <li>
+                    <div class="mu-testimonial-single">                   
+                      <div class="mu-testimonial-info">
+                        <p>냄비에 물을 많이 넣으면 라면을 더 넣으면 된다.</p>
+                      </div>
+                      <div class="mu-testimonial-bio">
+                        <p>- 갓형욱</p>                      
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Client Testimonial section -->
+
+  <!-- Start Footer -->
+  <footer id="mu-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+        <div class="mu-footer-area">
+           <div class="mu-footer-social">
+            <a href="https://www.facebook.com/" target='_blank'><span class="fa fa-facebook"></span></a>
+            <a href="https://twitter.com/?lang=ko" target='_blank'><span class="fa fa-twitter"></span></a>
+            <a href="https://www.google.com/webhp?hl=ko&ictx=2&sa=X&ved=0ahUKEwjf2Z7Lp4LiAhW0IqYKHezjCFoQPQgH" target='_blank'><span class="fa fa-google-plus"></span></a>
+            <a href="https://www.youtube.com/" target='_blank'><span class="fa fa-youtube"></span></a>
+            <a href="https://www.instagram.com/?hl=ko" target='_blank'><span class="fa fa-instagram"></span></a>
+          </div>
+          <div class="mu-footer-copyright">
+            <p>Designed by <a rel="nofollow" href="https://www.instagram.com/minizero0/">minizero0</a></p>
+          </div>         
+        </div>
+      </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+  
+  <!-- jQuery library -->
+  <script src="{% static 'js/jquery.min.js' %}"></script>  
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{% static 'js/bootstrap.js' %}"></script>   
+  <!-- Slick slider -->
+  <script type="text/javascript" src="{% static 'js/slick.js' %}"></script>
+  <!-- Counter -->
+  <script type="text/javascript" src="{% static 'js/waypoints.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.counterup.js' %}"></script>
+  <!-- Date Picker -->
+  <script type="text/javascript" src="{% static 'js/bootstrap-datepicker.js' %}"></script> 
+  <!-- Mixit slider -->
+  <script type="text/javascript" src="{% static 'js/jquery.mixitup.js' %}"></script>
+  <!-- Add fancyBox -->        
+  <script type="text/javascript" src="{% static 'js/jquery.fancybox.pack.js' %}"></script>
+
+  <!-- Custom js -->
+  <script src="{% static 'js/custom.js' %}"></script> 
+
+  </body>
+</html>
