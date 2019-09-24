@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+<form method="POST">
+  {% csrf_token %}
+    선호 시간대는 언제신가요?
+    <br>
+    {{form.liketime}}
+    <br>
+    지역은 어디가 좋으신가요? (**시로 입력해주세요)
+    {{form.location}}
+    <br>
+    어떤 스터디를 모집하나요?
+    {{form.title}}
+    <br>
+    자세한 내용을 적어주세요.
+    {{form.body}}
+    <br>
+  <input  class="btn btn-light" type="submit" value = "수정">
+</form>
+</div>
+{% endblock content %}

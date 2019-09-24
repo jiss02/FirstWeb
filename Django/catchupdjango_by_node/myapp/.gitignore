@@ -1,0 +1,16 @@
+package-lock.json
+package.json
+
+*.log
+*.gz
+
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+info
+
+node_modules
+
+mysql.js
+

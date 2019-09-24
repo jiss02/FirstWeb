@@ -1,0 +1,27 @@
+extends layout
+
+block content
+
+  -if(!check["flag"])
+    a(href="/users/login") 로그인
+    a(href="/users/signup") 회원가입
+  -else
+    a(href="/users/logout") 로그아웃
+    a(href="/write") 글쓰기
+    br
+    br
+    form(action="/users/bye", method = "POST")
+      input(type="submit", value = '회원탈퇴') 
+
+  h1= title
+  p Welcome to #{title}
+  p #{check['msg']}
+  br
+
+  // 최신글 순서
+  -for (var x = blogs.length - 1 ; x >= 0; x--)
+    p by #{blogs[x].nickname}
+    h2 #{blogs[x].title}
+    p #{blogs[x].content}
+    a(href=`/detail/${blogs[x].id}`) 더보기
+    hr

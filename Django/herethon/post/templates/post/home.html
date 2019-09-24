@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<div class="home_container">
+  <div class="py-5 text-center">
+    
+    <img width="332px" height="200px" src="{% static 'img/1.png' %}" ></a>
+    {% if user.is_authenticated %}
+    {{error}}
+  {% else %}
+    <br><br>
+    <p class="lead"></p>
+    <a class="btn btn-secondary" href="{% url 'login' %}">로그인</a>
+    <a class="btn btn-secondary" href="{% url 'signup' %}">회원가입</a>
+  {% endif %}
+  </div>
+  <p >
+  
+{% endblock content %}

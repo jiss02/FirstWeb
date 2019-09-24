@@ -1,0 +1,9 @@
+extends /layout
+
+block content
+  form(action="/users/login" method="POST")
+    p #{fmsg}
+    input(type="email", name = 'email', placeholder='이메일을 입력하세요')
+    br
+    input(type="password", name = 'password', placeholder = '비밀번호를 입력하세요')
+    input(type="submit", value = '로그인')

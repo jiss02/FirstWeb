@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+
+
+<form method = "POST" action = "{% url 'signup' %}">
+{% csrf_token %}
+
+
+<div class="container" style="margin-left:25%">
+<div class="col-md-8 order-md-1">
+    <br><br>
+  <h1 class="mb-3">회원가입</h1>
+  <form class="needs-validation" novalidate>
+    
+    <div class="mb-3">
+      <label for="username">Username</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">@</span>
+        </div>
+        <input type="text" class="form-control" name="username" placeholder="Username" required>
+        <div class="invalid-feedback" style="width: 100%;">
+          Your username is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password">Password <span class="text-muted"></span></label>
+      <input type="password" class="form-control" name="password1" id="password1">
+      <div class="invalid-feedback">
+        Please enter a valid password.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password">Confirm Password <span class="text-muted"></span></label>
+      <input type="password" class="form-control" name="password2" id="password2">
+      <div class="invalid-feedback">
+        Please enter a valid password.
+      </div>
+    </div>
+    
+   
+      <div class="mb-3">
+        <label for="gender">Gender</label>
+        <select class="custom-select d-block w-100" name="gender" id="gender" required>
+          <option value="">Choose...</option>
+          <option>여성</option>
+          <option>남성</option>
+        </select>
+        <div class="invalid-feedback">
+          Please select a valid gender.
+        </div>
+      </div>
+
+  
+      
+
+    <div class="mb-3">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" placeholder="you@example.com">
+      <div class="invalid-feedback">
+        Please enter a valid email address for shipping updates.
+      </div>
+    </div>
+
+    <hr class="mb-4">
+    <button class="btn btn-dark btn-lg btn-block" type="submit">Signup</button>
+
+</form>
+</div>
+</div>
+
+{% endblock content %}

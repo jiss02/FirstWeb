@@ -1,0 +1,13 @@
+extends /layout
+
+block content
+    form(method="post" action=`/update/${blog.id}`)
+        h2 제목
+        input(type="text", name="title", value = `${blog.title}`)
+        br
+        br
+        h2 내용
+        textarea(name="content", cols="30", rows="10",) #{blog.content}
+        br 
+        br
+        input(type="submit" value="전송하기")

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<br><br>
+<div class="container" >
+  <div class="card text-left">
+    <div class="card-body" style="padding:40px 30px 10px 30px">
+      <h2 class="card-title">{{post.title}}</h2>
+      <p  class="card-text" style="font-size: 0.8rem">{{post.update_at}}에 {{post.username}} 님이 작성</p>  
+        <p class="card-text" style="font-size: 0.9rem"> <b>{{post.liketime}}</b>시에 <b>{{post.location}}</b> 에서 만나는 것을 선호합니다.</p>
+        <b class="card-text">{{post.body}}</b>
+        <br><br>
+          {% if user.username == post.username %}
+            <a href="{% url 'postupdate' post.id %}" class="btn btn-light">수정</a>
+            <a href="{% url 'postdelete' post.id %}" class="btn btn-light">삭제</a>
+            <br><br>
+          {% endif %} 
+    </div>
+  <!--댓글-->
+  <ul class="list-group list-group-flush"> 
+    <li class="list-group-item">  
+      {% if commen is empty %}
+          댓글을 작성해보세요! ▶ <a style="font-size: 0.8rem" href="{% url 'comment_form' post.id %}">창열기</a><br>
+      {% endif %}
+      
+      <br>
+      <form method="POST" action="{% url 'comment_form' post.id %}">
+        {% csrf_token %}
+        {{comment_form}}
+        <br>
+        <input class = "btn btn-light" style="font-size: 0.7rem" value="댓글작성" type="submit">
+      </form>
+      <form method="POST">
+      {% csrf_token %}
+      {{comment_form2}}
+      <input  class = "btn btn-light" style="font-size: 0.7rem" value="댓글수정" type = "submit">
+      </form>
+    </li>
+  <li class="list-group-item">
+      {% if empty %}
+        작성된 댓글이 없습니다.
+      {% endif %}
+      {% for comment in post.comments.all  %}
+        
+        {{comment.username}}님의 댓글: {{comment.content}}
+        {% if user.username == comment.username %}
+        <a class = "btn btn-light" style="font-size: 0.7rem" href="{% url 'comment_update' comment.id %}">수정</a>
+        <a class = "btn btn-light" style="font-size: 0.7rem" href="{% url 'comment_delete' comment.id %}">삭제</a>
+        
+      {% endif %}
+    <hr>
+    {% endfor %}
+    </li>
+  </div>
+</div>
+{% endblock content %} 

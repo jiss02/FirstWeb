@@ -1,0 +1,30 @@
+extends /layout
+
+block content
+
+    // 자세한 내용
+    a(href=`/update/${blog.id}`) 수정
+    form(method="post", action=`/delete/${blog.id}`)
+        p #{fmsg.fmsg}
+        br
+        input(type="submit", value = "삭제")
+    p #{blog.nickname} 님이 말하길...
+    h1 #{blog.title}
+    p #{blog.content}
+    
+    // 로그인 여부에 대한 댓글
+    -if(check.flag)
+        form(method = "post" action=`/detail/${blog.id}/commentcreate`)
+            input(name = "comment", type="text",  required="required", placeholder = "Enter comment")
+            input(type="submit" value="댓글등록")
+    -else
+        p(style="color:grey;") #{check.msg}
+
+    -if (comment.length == 0)
+        p 작성된 댓글이 없습니다.
+    -else
+        -for (var x = 0; x < comment.length; x++)
+            p #{comment[x].nickname} 님의 댓글: #{comment[x].comment}
+            
+        
+    

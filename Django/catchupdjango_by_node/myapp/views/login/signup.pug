@@ -1,0 +1,17 @@
+extends /layout
+
+block content
+  form(action="/users/signup" method="POST")
+    input(type="nickname", name = "nickname",placeholder ="별명을 입력하세요", required)
+    br
+    br
+    input(type="email", name = 'email', placeholder='이메일을 입력하세요',required)
+    br
+    br
+    input(type="password", name = 'password1', placeholder = '비밀번호를 입력하세요', minlength="8",required)
+    br
+    br
+    input(type="password", name = 'password2', placeholder = '비밀번호를 한번 더 입력해주세요', required)
+    br
+    br
+    input(type="submit", value = '회원가입')

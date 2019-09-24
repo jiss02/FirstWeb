@@ -1,0 +1,14 @@
+extends /layout
+
+block content
+    h1= title
+    form(method="post" action="/write")
+        h2 제목
+        input(type="text", name="title")
+        br
+        br
+        h2 내용
+        textarea(name="content", cols="30", rows="10")
+        br 
+        br
+        input(type="submit" value="전송하기")

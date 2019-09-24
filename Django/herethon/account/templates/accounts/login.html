@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if error %}
+{{error}}
+{% else %}
+{% endif %}
+
+<br><br><br>
+<body class="text-center">
+<form class="form-signin" method="POST" action="{% url 'login' %}">
+{% csrf_token %}
+<h1 class="h3 mb-3 font-weight-normal">로그인</h1>
+<label for="inputUsername" class="sr-only">Username</label>
+<input type="text" id="inputEmail" name="username" class="form-control" placeholder="Username" required autofocus>
+<br>
+<label for="inputPassword" class="sr-only">Password</label>
+<input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+<br>
+<input class="btn btn-lg btn-dark btn-block" type="submit" value="로그인">
+</form>
+</body>
+
+ {% endblock content %}

@@ -1,0 +1,10 @@
+<div class='container'>
+    <form method = 'POST' action="">
+        {% csrf_token %}
+        <table>
+            {{comment_form.as_table}}
+        </table>
+        <br>
+        <input class="btn btn-dark" type="submit" value="등록">
+    </form>
+</div>

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <br><br>
+<div style="text-align: center;">
+  <form method="POST">
+    <input class="form-control" style="width:20% !important; text-align:center;display: inline-block; " type="text" placeholder="지역을 검색해보세요">
+    
+    <select class="form-control" style="width:8% !important; text-align:center;display: inline-block; " name="job">
+    {% for i,o in t %}
+      <option value={{i}}>{{o}}</option>
+    {% endfor %}
+    </select>
+
+    <button type = "submit" style="font-size: 0.9rem;" class = "btn btn-light">검색</button>
+
+  </form>
+</div>
+  
+  <br>
+  <div class = "row" style = "margin-left: 180px; margin-right: 40px;">
+    {% for post in posts_p %}
+   <div class = "card" style="width: 22rem; margin-right:20px; margin-bottom:20px;">
+     <div class="card-body">
+       <h5 class="card-title"><h4>{{post.title}}</h4></h5>
+       <h6 class="card-text"><p>원하는 시간: {{post.liketime}}시</p></h6>
+       <h6 class="card-text"><p>지역: {{post.location}}</p></h6>
+        <a href="{% url 'postdetail' post.id  %}" class="btn btn-dark">더보기</a>
+     </div>
+   </div>
+    {% endfor %}
+</div>
+
+<div class = "container" style="text-align: center;">
+  {% if posts_p.has_previous %}
+  <a class = "btn btn-light" href="?page=1">First</a>
+  <a class = "btn btn-light" href="?page={{posts_p.previous_page_number}}">Previous</a>
+  {% else %}
+  <button class = "btn btn-light">First</button>
+  <button class = "btn btn-light">Previous</button>
+  {% endif %}
+
+  <div class = "btn btn-dark">
+  <span>{{posts_p.number}}</span>
+  <span> of </span>
+  <span>{{posts_p.paginator.num_pages}}</span>
+  </div>
+  
+  {% if posts_p.has_next %}
+  <a class = "btn btn-light" href="?page={{posts_p.next_page_number}}">Next</a>
+  <a class = "btn btn-light" href="?page={{posts_p.paginator.num_pages}}">Last</a>
+  {% else %}
+  <button class = "btn btn-light">Next</button>
+  <button class = "btn btn-light">Last</button>
+  {% endif %}
+</div>
+<br><br><br>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+### NodeJS ###
+package-lock.json
+package.json
+
+*.log
+*.gz
+
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+info
+
+node_modules
+
+mysql.js
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+media
