@@ -15,6 +15,9 @@ node_modules
 
 mysql.js
 
+config/*
+dbConfig.js
+
 ### Django ###
 *.log
 *.pot
