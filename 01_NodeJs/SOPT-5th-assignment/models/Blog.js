@@ -9,15 +9,53 @@ const table = 'blog';
 module.exports = {
     read: () => {
         const q = `SELECT * FROM blog`;
-        const result = pool.queryParam_None(q);
-        
+        const sendData = pool.queryParam_None(q)
+        .then(result => {
+            return {
+                code: sc.OK,
+                json: util.successTrue(rm.BLOG_READ_ALL_SUCCESS, sc.OK, result)
+            }
+        })
+        .catch(err=>{
+            throw err;
+        });
+        return sendData;
     },
-
     myblog: (userIdx) => {
-
+        console.log(userIdx)
+        const q = `SELECT * FROM blog WHERE userIdx = ${userIdx}`;
+        const sendData = pool.queryParam_None(q)
+        .then(result => {
+            return {
+                code: sc.OK,
+                json: util.successTrue(rm.BLOG_READ_SUCCESS, sc.OK, result)
+            }
+        })
+        .catch(err=>{
+            throw err;
+        });
+        return sendData;
     },
-    create: ({userIdx ,title, content, created}) => {
-
+    create: ({userIdx , blogname, describe}) => {
+        console.log(userIdx);
+        const fields = '`userIdx`, `blogname`, `describe`, `created`'
+        const questions = `?,?,?,?`;
+        const created = new Date().toLocaleString().slice(0,18);
+        const values = [userIdx, blogname, describe, created];
+        const q = `INSERT INTO ${table}(${fields}) VALUES (${questions})`;
+        
+        const sendData = pool.queryParam_Parse(q, values)
+        .then(result=>{
+            console.log(result);
+            return {
+                code: sc.CREATED,
+                json: util.successTrue(rm.BLOG_CREATE_SUCCESS, sc.CREATED)
+            }
+        })
+        .catch(err => {
+            throw err;
+        });
+        return sendData;
     },
     update: ({blogIdx, title, content, created}) => {
 
