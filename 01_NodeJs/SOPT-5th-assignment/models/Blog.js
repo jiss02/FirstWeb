@@ -21,9 +21,9 @@ module.exports = {
         });
         return sendData;
     },
-    myblog: (userIdx) => {
-        console.log(userIdx)
-        const q = `SELECT * FROM blog WHERE userIdx = ${userIdx}`;
+
+    readOne: (blogIdx) => {
+        const q = `SELECT * FROM blog WHERE blogIdx = ${blogIdx}`;
         const sendData = pool.queryParam_None(q)
         .then(result => {
             return {
@@ -36,12 +36,13 @@ module.exports = {
         });
         return sendData;
     },
-    create: ({userIdx , blogname, describe}) => {
-        console.log(userIdx);
-        const fields = '`userIdx`, `blogname`, `describe`, `created`'
-        const questions = `?,?,?,?`;
+
+    create: ({userIdx , blogname, summary}) => {
+        const fields = '`userIdx`, `blogname`, `summary`, `created`, `updated`'
+        const questions = `?,?,?,?,?`;
         const created = new Date().toLocaleString().slice(0,18);
-        const values = [userIdx, blogname, describe, created];
+        const updated = new Date().toLocaleString().slice(0,18);
+        const values = [userIdx, blogname, summary, created, updated];
         const q = `INSERT INTO ${table}(${fields}) VALUES (${questions})`;
         
         const sendData = pool.queryParam_Parse(q, values)
@@ -57,10 +58,62 @@ module.exports = {
         });
         return sendData;
     },
-    update: ({blogIdx, title, content, created}) => {
 
+    update: async ({userIdx, blogIdx, blogname, summary}) => {
+        const checkquery = `SELECT userIdx FROM blog WHERE blogIdx = ${blogIdx}`
+        const sendData = pool.queryParam_None(checkquery)
+        .then(result => {
+            // 작성자인지 판단
+            if(result[0].userIdx !== userIdx) {
+                return {
+                    code: sc.BAD_REQUEST,
+                    json: util.successFalse("생성자와 일치하지 않습니다.", sc.BAD_REQUEST)
+                }
+            }
+            // 작성자와 일치하는 경우
+            const updated = new Date().toLocaleString().slice(0,18);
+            const q = `UPDATE \`${table}\` SET blogname='${blogname}', summary='${summary}', updated='${updated}' WHERE blogIdx=${blogIdx}`;
+            const updateData = pool.queryParam_None(q)
+            .then(result => {
+                return {
+                    code: sc.OK,
+                    json: util.successTrue(rm.BLOG_UPDATE_SUCCESS, sc.OK, result)
+                }
+            })
+            .catch(err=>{
+                throw err;
+            });
+            return updateData;
+        });
+        return sendData;
     },
-    delete: ({blogIdx}) => {
 
+    delete: (userIdx, blogIdx) => {
+        const checkquery = `SELECT userIdx FROM blog WHERE blogIdx = ${blogIdx}`
+        const sendData = pool.queryParam_None(checkquery)
+        .then(result => {
+            // 작성자인지 판단
+            if(result[0].userIdx !== userIdx) {
+                return {
+                    code: sc.BAD_REQUEST,
+                    json: util.successFalse("생성자와 일치하지 않습니다.", sc.BAD_REQUEST)
+                }
+            }
+            // 작성자와 일치하는 경우
+            const q = `DELETE FROM blog WHERE blogIdx = ${blogIdx}`;
+            const updateData = pool.queryParam_None(q)
+            .then(result => {
+                return {
+                    code: sc.OK,
+                    json: util.successTrue(rm.BLOG_DELETE_SUCCESS, sc.OK, result)
+                }
+            })
+            .catch(err=>{
+                throw err;
+            });
+            return updateData;
+        });
+        return sendData;
     },
+    
 }
