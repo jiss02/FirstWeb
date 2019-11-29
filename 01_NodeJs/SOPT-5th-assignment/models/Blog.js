@@ -8,7 +8,7 @@ const table = 'blog';
 
 module.exports = {
     read: () => {
-        const q = `SELECT * FROM blog`;
+        const q = `SELECT * FROM ${table}`;
         const sendData = pool.queryParam_None(q)
         .then(result => {
             return {
@@ -23,7 +23,7 @@ module.exports = {
     },
 
     readOne: (blogIdx) => {
-        const q = `SELECT * FROM blog WHERE blogIdx = ${blogIdx}`;
+        const q = `SELECT * FROM ${table} WHERE blogIdx = ${blogIdx}`;
         const sendData = pool.queryParam_None(q)
         .then(result => {
             return {
@@ -60,7 +60,7 @@ module.exports = {
     },
 
     update: async ({userIdx, blogIdx, blogname, summary}) => {
-        const checkquery = `SELECT userIdx FROM blog WHERE blogIdx = ${blogIdx}`
+        const checkquery = `SELECT userIdx FROM ${table} WHERE blogIdx = ${blogIdx}`
         const sendData = pool.queryParam_None(checkquery)
         .then(result => {
             // 작성자인지 판단
@@ -89,7 +89,7 @@ module.exports = {
     },
 
     delete: (userIdx, blogIdx) => {
-        const checkquery = `SELECT userIdx FROM blog WHERE blogIdx = ${blogIdx}`
+        const checkquery = `SELECT userIdx FROM ${table} WHERE blogIdx = ${blogIdx}`
         const sendData = pool.queryParam_None(checkquery)
         .then(result => {
             // 작성자인지 판단
@@ -100,7 +100,7 @@ module.exports = {
                 }
             }
             // 작성자와 일치하는 경우
-            const q = `DELETE FROM blog WHERE blogIdx = ${blogIdx}`;
+            const q = `DELETE FROM ${table} WHERE blogIdx = ${blogIdx}`;
             const updateData = pool.queryParam_None(q)
             .then(result => {
                 return {
@@ -115,5 +115,5 @@ module.exports = {
         });
         return sendData;
     },
-    
+
 }
