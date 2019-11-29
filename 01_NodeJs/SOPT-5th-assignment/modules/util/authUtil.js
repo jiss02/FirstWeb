@@ -9,7 +9,7 @@ const authUtil = {
 
         if(!token){
             res.status(sc.BAD_REQUEST)
-            .sned(util.successFalse(rm.NULL_VALUE), sc.BAD_REQUEST)
+            .send(util.successFalse("로그인하여 토큰을 발급받아주세요", sc.BAD_REQUEST));
         }
         const result = jwt.verify(token);
         console.log(result);
@@ -22,12 +22,12 @@ const authUtil = {
             .send(util.successFalse(rm.NULL_VALUE, sc.BAD_REQUEST));
         }
 
-        const userId = result.id;
-        if(!userId){
+        const userIdx = result.idx;
+        if(!userIdx){
             res.status(sc.BAD_REQUEST)
             .send(util.successFalse(rm.NULL_VALUE, sc.BAD_REQUEST));
         }
-        req.decoded = userId;
+        req.decoded = userIdx;
         next();
     },
 }
