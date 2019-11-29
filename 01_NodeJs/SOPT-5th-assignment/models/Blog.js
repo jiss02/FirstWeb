@@ -11,6 +11,13 @@ module.exports = {
         const q = `SELECT * FROM ${table}`;
         const sendData = pool.queryParam_None(q)
         .then(result => {
+            // 존재하는지 판단
+            if(!result[0]){
+                return {
+                    code: sc.BAD_REQUEST,
+                    json: util.successFalse(rm.NO_BLOG, sc.BAD_REQUEST)
+                }
+            }
             return {
                 code: sc.OK,
                 json: util.successTrue(rm.BLOG_READ_ALL_SUCCESS, sc.OK, result)
@@ -26,6 +33,13 @@ module.exports = {
         const q = `SELECT * FROM ${table} WHERE blogIdx = ${blogIdx}`;
         const sendData = pool.queryParam_None(q)
         .then(result => {
+            // 존재하는지 판단
+            if(!result[0]){
+                return {
+                    code: sc.BAD_REQUEST,
+                    json: util.successFalse(rm.NO_BLOG, sc.BAD_REQUEST)
+                }
+            }
             return {
                 code: sc.OK,
                 json: util.successTrue(rm.BLOG_READ_SUCCESS, sc.OK, result)
@@ -47,7 +61,6 @@ module.exports = {
         
         const sendData = pool.queryParam_Parse(q, values)
         .then(result=>{
-            console.log(result);
             return {
                 code: sc.CREATED,
                 json: util.successTrue(rm.BLOG_CREATE_SUCCESS, sc.CREATED)
@@ -63,6 +76,13 @@ module.exports = {
         const checkquery = `SELECT userIdx FROM ${table} WHERE blogIdx = ${blogIdx}`
         const sendData = pool.queryParam_None(checkquery)
         .then(result => {
+            // 존재하는지 판단
+            if(!result[0]){
+                return {
+                    code: sc.BAD_REQUEST,
+                    json: util.successFalse(rm.NO_BLOG, sc.BAD_REQUEST)
+                }
+            }
             // 작성자인지 판단
             if(result[0].userIdx !== userIdx) {
                 return {
@@ -92,6 +112,13 @@ module.exports = {
         const checkquery = `SELECT userIdx FROM ${table} WHERE blogIdx = ${blogIdx}`
         const sendData = pool.queryParam_None(checkquery)
         .then(result => {
+            // 존재하는지 판단
+            if(!result[0]){
+                return {
+                    code: sc.BAD_REQUEST,
+                    json: util.successFalse(rm.NO_BLOG, sc.BAD_REQUEST)
+                }
+            }
             // 작성자인지 판단
             if(result[0].userIdx !== userIdx) {
                 return {
