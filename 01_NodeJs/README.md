@@ -1,11 +1,36 @@
-### NodeJs_basic_by_opentutorials
+# :green_book: ​NodeJs 
 
-생활코딩을 따라해본 실습
+Node.Js에 관한 프로젝트 및 실습을 업로드 하는 공간입니다.
 
-### catchupdjango_by_node
 
-장고로 구현했던 포스트와 댓글의 crud, 회원가입등을 노드로 구현하는 연습
 
-### NodeJs_routing_sopt25th
+## SOPT-1st-assignment
 
-노드의 라우팅이 어떻게 이루어지 공부하기 위한 실습
+Node.js의 `routing`이 어떻게 이루어지는지에 대한 간단한 실습입니다.
+
+
+
+## SOPT-2nd-assignment
+
+Node.js  서버를 통해 SOPT 25기 멤버들의 정보를 조회하고, 팀원을 랜덤으로 생성해주는 `Mixer`모듈을 구현한 실습입니다.
+
+
+
+## SOPT-3rd-and-4th-assignment
+
+블로그를 구현한 프로젝트입니다. 
+
+Blog, Article, Comment의 CRUD를 구현하였습니다.
+
+
+
+## SOPT-5th-assignment
+
+[SOPT-3&4th-assignment]( https://github.com/jiss02/Practice/tree/master/01_NodeJs/SOPT-3rd-and-4th-assignment ) 프로젝트에서 회원관리 기능, 이미지 필드를 추가하여 구현했습니다.
+
+
+
+## Simple-community
+
+장고로 구현했던 게시글과 댓글 crud, 회원가입등을 노드로 구현한 실습입니다. 
+
