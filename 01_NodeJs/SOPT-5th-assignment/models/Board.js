@@ -1,4 +1,5 @@
 const pool = require('../modules/util/pool');
+const poolsync = require('../modules/util/poolSync');
 const sc = require('../modules/util/statusCode');
 const rm = require('../modules/util/responseMessage');
 const util = require('../modules/util/util');
@@ -51,16 +52,25 @@ module.exports = {
     },
 
     create: ({userIdx, blogIdx, title, content, imgs}) => {
-        const fields = '`userIdx`, `blogIdx` ,`title`, `content`, `imgs`,`created`, `updated`';
-        const questions = `?,?,?,?,?,?,?`;
+        const fields = '`userIdx`, `blogIdx` ,`title`, `content`,`created`, `updated`';
+        const questions = `?,?,?,?,?,?`;
         const created = new Date().toLocaleString().slice(0,18);
         const updated = new Date().toLocaleString().slice(0,18);
-        const values = [userIdx, blogIdx, title, content, imgs, created, updated];
+        const values = [userIdx, blogIdx, title, content, created, updated];
         const q = `INSERT INTO ${table}(${fields}) VALUES (${questions})`;
         
+        console.log(imgs)
         const sendData = pool.queryParam_Parse(q, values)
         .then(result=>{
-            console.log(result);
+             // 이미지 저장
+            if(imgs.length !== 0){
+                for (var img in imgs) {
+                    img = imgs[img]
+                    const imgquery = `INSERT INTO image(boardIdx, name, path, size) VALUES(${result.insertId},'${img.originalname}', '${img.path}', ${img.size})`
+                    const imgresult = poolsync.queryParam_Parse(imgquery)
+                    
+                }
+            }
             return {
                 code: sc.CREATED,
                 json: util.successTrue(rm.BOARD_CREATE_SUCCESS, sc.CREATED)

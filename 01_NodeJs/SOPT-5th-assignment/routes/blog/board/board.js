@@ -6,6 +6,10 @@ const rm = require('../../../modules/util/responseMessage');
 const check = require('../../../modules/util/nullcheck');
 const Board = require('../../../models/Board');
 
+// 이미지업로드
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' }); 
+
 router.get('/', (req, res)=>{
     const blogIdx = req.params.blogIdx;
     Board.read(blogIdx)
@@ -31,16 +35,19 @@ router.get('/:boardIdx', (req, res)=>{
 });
 
 router.use('/', require("../../../modules/util/authUtil").LoggedIn);
-router.post('/', (req, res)=> {
+router.post('/', upload.array('photos', 5), (req, res)=> {
     const decoded = req.decoded;
     const blogIdx = req.params.blogIdx;
-    const {title, content, imgs} = req.body;
+    const {title, content} = req.body;
+    const imgs = req.files.map(it => {
+        return {originalname: it.originalname, path: it.path, size: it.size}
+        });
     if(!title || !content || !imgs){
         const miss = check.isnull({title, content, imgs});
         res.status(sc.BAD_REQUEST)
         .send(util.successFalse(`${rm.NULL_VALUE} 없는 값은 ${miss} 입니다`, sc.BAD_REQUEST));
     }
-    Board.create({decoded, blogIdx ,title, content, imgs})
+    Board.create({userIdx:decoded, blogIdx ,title, content, imgs})
     .then(({code, json})=>{
         res.status(code).send(json);
     })
