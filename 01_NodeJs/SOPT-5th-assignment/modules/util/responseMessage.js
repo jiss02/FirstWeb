@@ -28,6 +28,7 @@ module.exports = {
     BOARD_DELETE_SUCCESS: "게시글 삭제 성공",
     BOARD_DELETE_FAIL: "게시글 삭제 실패",
 
+    EMPTY_BLOG: "불러올 블로그가 존재하지 않습니다. 블로그를 만들어보세요!",
     NO_BLOG: "존재하지않는 블로그 입니다.",
     BLOG_CREATE_SUCCESS: "블로그 작성 성공",
     BLOG_CREATE_FAIL: "블로그 작성 실패",

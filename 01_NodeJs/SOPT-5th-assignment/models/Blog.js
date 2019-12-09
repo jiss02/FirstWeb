@@ -15,7 +15,7 @@ module.exports = {
             if(!result[0]){
                 return {
                     code: sc.BAD_REQUEST,
-                    json: util.successFalse(rm.NO_BLOG, sc.BAD_REQUEST)
+                    json: util.successFalse(rm.EMPTY_BLOG, sc.BAD_REQUEST)
                 }
             }
             return {
