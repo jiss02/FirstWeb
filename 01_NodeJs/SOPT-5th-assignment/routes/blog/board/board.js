@@ -62,7 +62,7 @@ router.put('/:boardIdx', (req, res)=> {
     const decoded = req.decoded;
     const {blogIdx, boardIdx} = req.params;
     const {title, content, imgs} = req.body;
-    if(!title || !content || !imgs){
+    if(!title || !content){
         const miss = check.isnull({title, content, imgs});
         res.status(sc.BAD_REQUEST)
         .send(util.successFalse(`${rm.NULL_VALUE} 없는 값은 ${miss} 입니다`, sc.BAD_REQUEST));
