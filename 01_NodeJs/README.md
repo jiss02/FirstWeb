@@ -8,7 +8,14 @@ Node.Js에 관한 프로젝트 및 실습을 업로드 하는 공간입니다.
 
 Node.js의 `routing`이 어떻게 이루어지는지에 대한 간단한 실습입니다.
 
+로직은 따로 없으며, 아래의 라우팅만 구현하였습니다.
 
+```
+localhost:3000/api/cafe
+localhost:3000/api/blog
+localhost:3000/api/news
+localhost:3000/api/news/like
+```
 
 ## SOPT-2nd-assignment
 
