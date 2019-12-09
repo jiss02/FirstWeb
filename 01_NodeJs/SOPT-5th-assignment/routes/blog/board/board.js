@@ -61,9 +61,9 @@ router.post('/', upload.array('photos', 5), (req, res)=> {
 router.put('/:boardIdx', (req, res)=> {
     const decoded = req.decoded;
     const {blogIdx, boardIdx} = req.params;
-    const {title, content, imgs} = req.body;
+    const {title, content} = req.body;
     if(!title || !content){
-        const miss = check.isnull({title, content, imgs});
+        const miss = check.isnull({title, content});
         res.status(sc.BAD_REQUEST)
         .send(util.successFalse(`${rm.NULL_VALUE} 없는 값은 ${miss} 입니다`, sc.BAD_REQUEST));
     }
