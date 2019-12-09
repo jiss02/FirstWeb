@@ -41,7 +41,7 @@ router.post('/', upload.array('photos', 5), (req, res)=> {
     const blogIdx = req.params.blogIdx;
     const {title, content} = req.body;
     const imgs = req.files.map(it => {
-        return {originalname: it.originalname, path: it.path, size: it.size}
+        return {originalname: it.originalname, path: it.location, size: it.size}
         });
     if(!title || !content){
         const miss = check.isnull({title, content, imgs});
