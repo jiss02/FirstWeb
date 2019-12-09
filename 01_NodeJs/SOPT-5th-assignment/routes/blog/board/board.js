@@ -6,9 +6,10 @@ const rm = require('../../../modules/util/responseMessage');
 const check = require('../../../modules/util/nullcheck');
 const Board = require('../../../models/Board');
 
-// 이미지업로드
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' }); 
+// 이미지업로드 S3
+// const multer = require('multer');
+// const upload = multer({ dest: 'uploads/' }); 
+const upload = require('../../../config/multer');
 
 router.get('/', (req, res)=>{
     const blogIdx = req.params.blogIdx;
