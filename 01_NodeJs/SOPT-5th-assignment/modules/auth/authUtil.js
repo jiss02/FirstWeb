@@ -1,7 +1,7 @@
-const jwt = require('../jwt');
-const rm = require('./responseMessage');
-const sc = require('./statusCode');
-const util = require('./util');
+const jwt = require('./jwt');
+const rm = require('../util/responseMessage');
+const sc = require('../util/statusCode');
+const util = require('../util/util');
 
 const authUtil = {
     LoggedIn: async(req, res, next) => {

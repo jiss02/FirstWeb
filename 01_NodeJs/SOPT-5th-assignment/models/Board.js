@@ -1,5 +1,5 @@
-const pool = require('../modules/util/pool');
-const poolsync = require('../modules/util/poolSync');
+const pool = require('../modules/db/pool');
+const poolsync = require('../modules/db/poolSync');
 const sc = require('../modules/util/statusCode');
 const rm = require('../modules/util/responseMessage');
 const util = require('../modules/util/util');

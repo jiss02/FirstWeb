@@ -2,7 +2,7 @@ const randToken = require('rand-token');
 const jwt = require('jsonwebtoken');
 const {
     secretOrPrivateKey
-} = require('../config/key');
+} = require('../../config/key');
 const options = {
     algorithm: "HS256",
     expiresIn: "24h",
