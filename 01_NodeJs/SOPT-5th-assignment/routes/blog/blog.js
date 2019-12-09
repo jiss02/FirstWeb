@@ -29,7 +29,7 @@ router.get('/:blogIdx', (req, res)=>{
     });
 });
 
-router.use('/', require("../../modules/util/authUtil").LoggedIn);
+router.use('/', require("../../modules/auth/authUtil").LoggedIn);
 router.post('/', (req, res)=> {
     const decoded = req.decoded;
     const {blogname, summary} = req.body;
