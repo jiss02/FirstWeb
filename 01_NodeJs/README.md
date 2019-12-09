@@ -171,6 +171,8 @@ Blog, Article, Comment의 CRUD를 구현하였습니다.
 
 [SOPT-3&4th-assignment]( https://github.com/jiss02/Practice/tree/master/01_NodeJs/SOPT-3rd-and-4th-assignment ) 프로젝트에서 회원관리 기능, 이미지 필드를 추가하여 구현했습니다.
 
+## BASEURL:  http://15.165.67.97:3000
+
 ### **추가 사항**
 
 #### Article Table에 Image Field를 추가
