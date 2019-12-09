@@ -43,7 +43,7 @@ router.post('/', upload.array('photos', 5), (req, res)=> {
     const imgs = req.files.map(it => {
         return {originalname: it.originalname, path: it.path, size: it.size}
         });
-    if(!title || !content || !imgs){
+    if(!title || !content){
         const miss = check.isnull({title, content, imgs});
         res.status(sc.BAD_REQUEST)
         .send(util.successFalse(`${rm.NULL_VALUE} 없는 값은 ${miss} 입니다`, sc.BAD_REQUEST));

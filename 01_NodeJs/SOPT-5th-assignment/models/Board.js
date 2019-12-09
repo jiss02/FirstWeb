@@ -3,12 +3,13 @@ const poolsync = require('../modules/db/poolSync');
 const sc = require('../modules/util/statusCode');
 const rm = require('../modules/util/responseMessage');
 const util = require('../modules/util/util');
+const moment = require('moment');
 
 const table = 'board';
 
 module.exports = {
-    read: (blogIdx) => {
-        const q = `SELECT * FROM ${table} WHERE blogIdx = ${blogIdx} `;
+    read: async (blogIdx) => {
+        const q = `SELECT * FROM ${table} WHERE blogIdx = ${blogIdx}`;
         const sendData = pool.queryParam_None(q)
         .then(result => {
             // 존재하는지 판단
@@ -54,8 +55,8 @@ module.exports = {
     create: ({userIdx, blogIdx, title, content, imgs}) => {
         const fields = '`userIdx`, `blogIdx` ,`title`, `content`,`created`, `updated`';
         const questions = `?,?,?,?,?,?`;
-        const created = new Date().toLocaleString().slice(0,18);
-        const updated = new Date().toLocaleString().slice(0,18);
+        const created = moment().format('YYYY-MM-DD hh:mm:ss');
+        const updated = moment().format('YYYY-MM-DD hh:mm:ss');
         const values = [userIdx, blogIdx, title, content, created, updated];
         const q = `INSERT INTO ${table}(${fields}) VALUES (${questions})`;
         
@@ -107,7 +108,7 @@ module.exports = {
                 }
             }
             // 작성자와 일치하는 경우
-            const updated = new Date().toLocaleString().slice(0,18);
+            const updated = moment().format('YYYY-MM-DD hh:mm:ss');
             const q = `UPDATE \`${table}\` SET title='${title}', content='${content}', imgs = '${imgs}', updated='${updated}' WHERE boardIdx=${boardIdx}`;
             const updateData = pool.queryParam_None(q)
             .then(result => {

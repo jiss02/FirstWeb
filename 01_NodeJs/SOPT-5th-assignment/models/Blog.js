@@ -54,8 +54,8 @@ module.exports = {
     create: ({userIdx , blogname, summary}) => {
         const fields = '`userIdx`, `blogname`, `summary`, `created`, `updated`'
         const questions = `?,?,?,?,?`;
-        const created = new Date().toLocaleString().slice(0,18);
-        const updated = new Date().toLocaleString().slice(0,18);
+        const created = moment().format('YYYY-MM-DD hh:mm:ss');
+        const updated = moment().format('YYYY-MM-DD hh:mm:ss');
         const values = [userIdx, blogname, summary, created, updated];
         const q = `INSERT INTO ${table}(${fields}) VALUES (${questions})`;
         
@@ -91,7 +91,7 @@ module.exports = {
                 }
             }
             // 작성자와 일치하는 경우
-            const updated = new Date().toLocaleString().slice(0,18);
+            const updated = moment().format('YYYY-MM-DD hh:mm:ss');
             const q = `UPDATE \`${table}\` SET blogname='${blogname}', summary='${summary}', updated='${updated}' WHERE blogIdx=${blogIdx}`;
             const updateData = pool.queryParam_None(q)
             .then(result => {
