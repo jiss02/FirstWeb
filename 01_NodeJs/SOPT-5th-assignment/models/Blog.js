@@ -2,8 +2,7 @@ const pool = require('../modules/db/pool');
 const sc = require('../modules/util/statusCode');
 const rm = require('../modules/util/responseMessage');
 const util = require('../modules/util/util');
-const encrypt = require('../modules/auth/encryption');
-
+const moment = require('moment');
 const table = 'blog';
 
 module.exports = {
