@@ -36,74 +36,14 @@ Level 3. 팀원을 랜덤으로 생성해주는 `Mixer`모듈을 구현한 실�
 ```
 
 
+
 # SOPT-3rd-and-4th-assignment
 
-Node.js 서버를 통해 블로그를 구현한 프로젝트입니다. 
+Node.js 서버를 통해 블로그를 구현한 프로젝트입니다.
 
 Blog, Article, Comment의 CRUD를 구현하였습니다.
 
-### :blue_book: ~/blog
-
-#### [GET] 
-
-##### Request - Header
-
-| KEY          | VALUE            |
-| ------------ | ---------------- |
-| Content-Type | application/json |
-
-#### [POST]
-
-##### Request - Header
-
-| KEY          | VALUE            |
-| ------------ | ---------------- |
-| Content-Type | application/json |
-
-##### Request - Body
-
-| 변수     | 타입   | 설명              |
-| -------- | ------ | ----------------- |
-| username | String | 블로그 주인의 이름 |
-| blogname   | String    | 블로그 이름 |
-| describe    | String    | 블로그 설명 |
-| password    | String    | 패스워드 |
-
-#### [PUT]
-
-##### Request - Header
-
-| KEY          | VALUE            |
-| ------------ | ---------------- |
-| Content-Type | application/json |
-
-##### Request - Body
-
-| 변수     | 타입   | 설명              |
-| -------- | ------ | ----------------- |
-| blog_id | Int | 변경할 블로그의 Idx |
-| username | String | 블로그 주인의 이름 |
-| blogname   | String    | 블로그 이름 |
-| describe    | String    | 블로그 설명 |
-| password    | String    | 패스워드 |
-| new_password    | String    | 새로 변경할 패스워드 |
-
-#### [DELETE]
-
-##### Request - Header
-
-| KEY          | VALUE            |
-| ------------ | ---------------- |
-| Content-Type | application/json |
-
-##### Request - Body
-
-| 변수    | 타입 | 설명                |
-| ------- | ---- | ------------------- |
-| blogIdx | Int  | 삭제할 블로그의 Idx |
-| password    | String    | 삭제할 블로그의 패스워드 |
-
-### :newspaper: ~/blog/:blog_id/article
+### 📘 ~/blog
 
 #### [GET]
 
@@ -123,11 +63,12 @@ Blog, Article, Comment의 CRUD를 구현하였습니다.
 
 ##### Request - Body
 
-| 변수     | 타입   | 설명              |
-| -------- | ------ | ----------------- |
-| blog_id | Int | 글을 작성할 블로그 Idx |
-| title | String    | 글 제목 |
-| content | String    | 글 내용 |
+| 변수     | 타입   | 설명               |
+| -------- | ------ | ------------------ |
+| username | String | 블로그 주인의 이름 |
+| blogname | String | 블로그 이름        |
+| describe | String | 블로그 설명        |
+| password | String | 패스워드           |
 
 #### [PUT]
 
@@ -139,12 +80,14 @@ Blog, Article, Comment의 CRUD를 구현하였습니다.
 
 ##### Request - Body
 
-| 변수     | 타입   | 설명              |
-| -------- | ------ | ----------------- |
-| board_id | Int | 변경할 글의 Idx |
-| title | String | 글 제목                                              |
-| content       | String | 글 내용                                              |
-| blog_password | String    | 블로그 주인만 업데이트할 수 있도록 하기위한 비밀번호 |
+| 변수         | 타입   | 설명                 |
+| ------------ | ------ | -------------------- |
+| blog_id      | Int    | 변경할 블로그의 Idx  |
+| username     | String | 블로그 주인의 이름   |
+| blogname     | String | 블로그 이름          |
+| describe     | String | 블로그 설명          |
+| password     | String | 패스워드             |
+| new_password | String | 새로 변경할 패스워드 |
 
 #### [DELETE]
 
@@ -156,8 +99,66 @@ Blog, Article, Comment의 CRUD를 구현하였습니다.
 
 ##### Request - Body
 
-| 변수    | 타입 | 설명                |
-| ------- | ---- | ------------------- |
+| 변수     | 타입   | 설명                     |
+| -------- | ------ | ------------------------ |
+| blogIdx  | Int    | 삭제할 블로그의 Idx      |
+| password | String | 삭제할 블로그의 패스워드 |
+
+### 📰 ~/blog/:blog_id/article
+
+#### [GET]
+
+##### Request - Header
+
+| KEY          | VALUE            |
+| ------------ | ---------------- |
+| Content-Type | application/json |
+
+#### [POST]
+
+##### Request - Header
+
+| KEY          | VALUE            |
+| ------------ | ---------------- |
+| Content-Type | application/json |
+
+##### Request - Body
+
+| 변수    | 타입   | 설명                   |
+| ------- | ------ | ---------------------- |
+| blog_id | Int    | 글을 작성할 블로그 Idx |
+| title   | String | 글 제목                |
+| content | String | 글 내용                |
+
+#### [PUT]
+
+##### Request - Header
+
+| KEY          | VALUE            |
+| ------------ | ---------------- |
+| Content-Type | application/json |
+
+##### Request - Body
+
+| 변수          | 타입   | 설명                                                 |
+| ------------- | ------ | ---------------------------------------------------- |
+| board_id      | Int    | 변경할 글의 Idx                                      |
+| title         | String | 글 제목                                              |
+| content       | String | 글 내용                                              |
+| blog_password | String | 블로그 주인만 업데이트할 수 있도록 하기위한 비밀번호 |
+
+#### [DELETE]
+
+##### Request - Header
+
+| KEY          | VALUE            |
+| ------------ | ---------------- |
+| Content-Type | application/json |
+
+##### Request - Body
+
+| 변수          | 타입   | 설명                                             |
+| ------------- | ------ | ------------------------------------------------ |
 | blog_id       | Int    | 변경할 글의 블로그 Idx                           |
 | board_id      | Int    | 변경할 글의 Idx                                  |
 | blog_password | String | 블로그 주인만 삭제할 수 있도록 하기위한 비밀번호 |
@@ -173,7 +174,132 @@ Blog, Article, Comment의 CRUD를 구현하였습니다.
 
 ## BASEURL:  http://15.165.67.97:3000
 
-### **추가 사항**
+## 로그인 / 회원가입
+
+### :pencil2: ~/user/register
+
+| 변수     | 타입   | 설명     |
+| -------- | ------ | -------- |
+| id       | String | 아이디   |
+| password | String | 비밀번호 |
+| username | String | 닉네임   |
+| email    | String | 이메일   |
+
+### :key: ~/user/login
+
+##### Request - Body
+
+| 변수     | 타입   | 설명     |
+| -------- | ------ | -------- |
+| id       | String | 아이디   |
+| password | String | 비밀번호 |
+
+## 블로그 / 게시글
+
+### :blue_book: ~/blog
+
+#### [GET] 
+
+##### Request - Header
+
+| KEY          | VALUE            |
+| ------------ | ---------------- |
+| Content-Type | application/json |
+
+#### [POST] ~/blog/:blogIdx
+
+##### Request - Header
+
+| KEY          | VALUE            |
+| ------------ | ---------------- |
+| Content-Type | application/json |
+| token        | 토큰값           |
+
+##### Request - Body
+
+| 변수     | 타입   | 설명        |
+| -------- | ------ | ----------- |
+| blogname | String | 블로그 이름 |
+| summary  | String | 블로그 설명 |
+
+#### [PUT] ~/blog/:blogIdx
+
+##### Request - Header
+
+| KEY          | VALUE            |
+| ------------ | ---------------- |
+| Content-Type | application/json |
+| token        | 토큰값           |
+
+##### Request - Body
+
+| 변수     | 타입   | 설명        |
+| -------- | ------ | ----------- |
+| blogname | String | 블로그 이름 |
+| summary  | String | 블로그 설명 |
+
+#### [DELETE] ~/blog/:blogIdx
+
+##### Request - Header
+
+| KEY          | VALUE            |
+| ------------ | ---------------- |
+| Content-Type | application/json |
+| token        | 토큰값           |
+
+### :newspaper: ~/blog/:blogIdx/board
+
+#### [GET]
+
+##### Request - Header
+
+| KEY          | VALUE            |
+| ------------ | ---------------- |
+| Content-Type | application/json |
+
+#### [POST] ~/blog/:blogIdx/board/:boardIdx
+
+##### Request - Header
+
+| KEY          | VALUE               |
+| ------------ | ------------------- |
+| Content-Type | multipart/form-data |
+| token        | 토큰값           |
+
+##### Request - Body
+
+| 변수    | 타입   | 설명        |
+| ------- | ------ | ----------- |
+| title   | String | 글 제목     |
+| content | String | 글 내용     |
+| image   | Files  | 글의 이미지 |
+
+#### [PUT] ~/blog/:blogIdx/board/:boardIdx
+
+##### Request - Header
+
+| KEY          | VALUE            |
+| ------------ | ---------------- |
+| Content-Type | application/json |
+| token        | 토큰값           |
+
+##### Request - Body 
+
+| 변수    | 타입   | 설명    |
+| ------- | ------ | ------- |
+| title   | String | 글 제목 |
+| content | String | 글 내용 |
+
+#### [DELETE] ~/blog/:blogIdx/board/:boardIdx
+
+##### Request - Header
+
+| KEY          | VALUE            |
+| ------------ | ---------------- |
+| Content-Type | application/json |
+| token        | 토큰값           |
+
+### **추가 사항 요약**
 
 #### Article Table에 Image Field를 추가
 
@@ -185,7 +311,7 @@ Article을 작성할 때 이미지 파일도 업로드 할 수 있습니다.
 
 | 변수    | 타입   | 설명                   |
 | ------- | ------ | ---------------------- |
-| blog_id | Int    | 글을 작성할 블로그 Idx |
+| blogIdx | Int    | 글을 작성할 블로그 Idx |
 | title   | String | 글 제목                |
 | content | String | 글 내용                |
 | image   | Files  | 글의 이미지            |
