@@ -1,4 +1,5 @@
 var posts = require('../model/post');
+const DatabaseError = require('../error/DatabaseError')
 
 module.exports = {
     create: ({title, content})=> {
@@ -12,6 +13,15 @@ module.exports = {
     },
     detail: (postIdx) => {
         return posts.findOne({_id: postIdx})
+    },
+    update: async ({title, content, postIdx}) => {
+        let post = await posts.findById(postIdx)
+        if(!post){
+            throw new DatabaseError();
+        }
+        post.title = title
+        post.content = content
+        return post.save()
     }
 
 }

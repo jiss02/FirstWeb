@@ -16,8 +16,8 @@ router.post('/', (req, res)=>{
     })
     .catch((e)=>{
       console.log(e);
-      res.status(err.status || 500)
-      .send(util.fail(err.massage));
+      res.status(e.status || 500)
+      .send(util.fail(e.massage));
     });
 });
 
@@ -29,8 +29,8 @@ router.get('/', (req, res)=> {
     })
     .catch((e)=>{
       console.log(e);
-      res.status(err.status || 500)
-      .send(util.fail(err.massage));
+      res.status(e.status || 500)
+      .send(util.fail(e.massage));
     });
 })
 
@@ -43,10 +43,24 @@ router.get('/:postIdx', (req, res)=>{
     })
     .catch((e)=>{
       console.log(e);
-      res.status(err.status || 500)
-      .send(util.fail(err.massage));
+      res.status(e.status || 500)
+      .send(util.fail(e.massage));
     });
 });
 
+router.put('/:postIdx', (req, res)=>{
+  const postIdx = req.params.postIdx
+  const { title, content } = req.body;
+  postController.update({title, content, postIdx})
+    .then((updateResult)=>{
+      res.status(200)
+      .json(util.success(rm.X_UPDATE_SUCCESS(NAME), updateResult));
+    })
+    .catch((e)=>{
+      console.log(e);
+      res.status(e.status || 500)
+      .send(util.fail(e.massage));
+    });
+})
 
 module.exports = router;
