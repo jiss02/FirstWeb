@@ -10,9 +10,9 @@ const NAME = "블로그"
 router.post('/', (req, res)=>{
   const { title, content } = req.body;
   postController.create({title, content})
-    .then((data)=>{
+    .then((createResult)=>{
       res.status(201)
-      .json(util.success(rm.X_CREATE_SUCCESS(NAME), data))
+      .json(util.success(rm.X_CREATE_SUCCESS(NAME), createResult))
     })
     .catch((e)=>{
       console.log(e);
@@ -33,6 +33,20 @@ router.get('/', (req, res)=> {
       .send(util.fail(err.massage));
     });
 })
+
+router.get('/:postIdx', (req, res)=>{
+  const postIdx = req.params.postIdx;
+  postController.detail(postIdx)
+    .then((post)=> {
+      res.status(200)
+      .json(util.success(rm.X_READ_SUCCESS(NAME), post))
+    })
+    .catch((e)=>{
+      console.log(e);
+      res.status(err.status || 500)
+      .send(util.fail(err.massage));
+    });
+});
 
 
 module.exports = router;

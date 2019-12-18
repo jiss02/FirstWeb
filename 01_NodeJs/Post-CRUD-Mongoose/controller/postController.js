@@ -9,6 +9,9 @@ module.exports = {
     },
     readAll: () => {
         return posts.find()
+    },
+    detail: (postIdx) => {
+        return posts.findOne({_id: postIdx})
     }
 
 }
