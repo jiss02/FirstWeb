@@ -7,6 +7,8 @@ module.exports = {
         postModel.content = content
         return postModel.save()
     },
-    
+    readAll: () => {
+        return posts.find()
+    }
 
 }
