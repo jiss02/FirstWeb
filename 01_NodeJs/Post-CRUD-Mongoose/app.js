@@ -37,7 +37,7 @@ app.use(function(err, req, res, next) {
 
   const util = require('module/util/util.js');
   res.status(err.status || 500);
-  res.send(util.fail(err.message));
+  res.json(util.fail(err.message));
 });
 
 module.exports = app;
