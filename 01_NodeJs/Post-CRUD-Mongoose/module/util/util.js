@@ -6,8 +6,9 @@ module.exports = {
             data
         }
     },
-    fail: (msg) => {
+    fail: (name, msg) => {
         return {
+            name,
             msg
         }
     }
