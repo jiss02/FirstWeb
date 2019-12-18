@@ -22,6 +22,9 @@ module.exports = {
         post.title = title
         post.content = content
         return post.save()
+    },
+    delete: (postIdx) => {
+        return posts.deleteOne({_id: postIdx})
     }
 
 }

@@ -17,7 +17,7 @@ router.post('/', (req, res)=>{
     .catch((e)=>{
       console.log(e);
       res.status(e.status || 500)
-      .send(util.fail(e.massage));
+      .send(util.fail(e.name, e.message));
     });
 });
 
@@ -30,7 +30,7 @@ router.get('/', (req, res)=> {
     .catch((e)=>{
       console.log(e);
       res.status(e.status || 500)
-      .send(util.fail(e.massage));
+      .send(util.fail(e.name, e.message));
     });
 })
 
@@ -44,7 +44,7 @@ router.get('/:postIdx', (req, res)=>{
     .catch((e)=>{
       console.log(e);
       res.status(e.status || 500)
-      .send(util.fail(e.massage));
+      .send(util.fail(e.name, e.message));
     });
 });
 
@@ -59,8 +59,23 @@ router.put('/:postIdx', (req, res)=>{
     .catch((e)=>{
       console.log(e);
       res.status(e.status || 500)
-      .send(util.fail(e.massage));
+      .send(util.fail(e.name, e.message));
     });
 })
+
+router.delete('/:postIdx', (req, res)=>{
+  const postIdx = req.params.postIdx;
+  postController.delete(postIdx)
+    .then((deleteResult)=>{
+      console.log(deleteResult)
+      res.status(200)
+      .json(util.success(rm.X_DELETE_SUCCESS(NAME), deleteResult));
+    })
+    .catch((e)=>{
+      console.log(e);
+      res.status(e.status || 500)
+      .send(util.fail(e.name ,e.message));
+    });
+});
 
 module.exports = router;
