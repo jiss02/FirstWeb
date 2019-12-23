@@ -13,7 +13,7 @@ rest-framework를 이용한 blog구현
   - image와 file업로드 가능
   - pagination 구현
 - 회원가입 / 로그인 구현
-- token 기능 구현 
+  - token 기능 구현 
 
 ## viewset_basic
 
