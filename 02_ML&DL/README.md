@@ -4,5 +4,12 @@
 
 - 모두의 딥러닝 Lab
 - 모델링
+  - Linear&Logistic Regression
+  - Regularization & ParameterSearch
 - 전처리
+  - numpy & pandas
+  - EDA
 - 미니 프로젝트
+  - 자살자 수 예측하기
+  - 독버섯 classification
+  - 환자의 병원 노쇼 예측하기
