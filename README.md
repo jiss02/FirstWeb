@@ -2,7 +2,7 @@
 간단한 실습들과 해커톤 프로젝트를 업로드하는 공간입니다.
 
 
-### :globe_with_meridians: 프레임워크
+### :wrench: 프레임워크 01
 
 백엔드 위주의 실습 카테고리입니다.
 
@@ -11,11 +11,11 @@
 - SpringBoot
 - Node.js
 
-#### 웹 기초 
+### :globe_with_meridians: 웹 기초 02
 
-- HTML&CSS&JS
+- Static (HTML&CSS)
 
-### :robot: 데이터분석 & 사이언스 
+### :robot: 데이터분석 & 사이언스 03
 
 - ML&DL
 
